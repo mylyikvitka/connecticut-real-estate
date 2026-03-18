@@ -1,6 +1,6 @@
 # Data Model
 
-## Original Schema
+## Original Schema 
 
 ![Star Schema](schema.png)
 
