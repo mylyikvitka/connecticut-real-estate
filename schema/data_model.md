@@ -2,7 +2,7 @@
 
 ## Original Schema
 
-![Star Schema](schema/schema.png)
+![Star Schema](schema.png)
 
 ### Fact Tables
 
