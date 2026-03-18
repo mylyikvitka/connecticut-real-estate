@@ -12,7 +12,7 @@ It ingests and transforms multiple data sources into a single analytics-ready da
 2. **Risk & Anomaly Detection (Forensic View)**  
    - Flag abnormal transactions (e.g., family sales, foreclosures, or data errors).  
    - Example Question: Which sales are statistically suspicious and require review?
-   - 
+
 3. **Economic & Geographic Insights (Analyst View)**  
    - Investigate effects of affordable housing, unemployment, and household debt on real estate activity.  
    - Example Questions:  
