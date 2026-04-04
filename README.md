@@ -1,49 +1,123 @@
-# Connecticut Real Estate Analytics Pipeline 
+# Real Estate Market Analysis for Investment Potential
 
-## Overview
-This project is an automated analytics engine for the Connecticut real estate market.  
-It ingests and transforms multiple data sources into a single analytics-ready dataset, enabling insights on market opportunities, risk detection, and economic patterns.  
+## Executive Summary
+Connecticut’s real estate market is in a post-recovery slowdown phase, with declining transaction volumes since 2021 indicating reduced liquidity and affordability pressure.  
 
-## Strategic Goals
-1. **Market Opportunity (Investor View)**  
-   - Identify "Hot" and "Cold" markets by tracking divergence between assessed value and sale price.  
-   - Example Question: Which neighborhoods offer the highest price stability and potential ROI?  
+- Top investment opportunities are concentrated in high-liquidity cities: Waterbury, Bridgeport, and Stamford, offering the best balance of growth, stability, and market activity.  
+- Defensive markets*such as Canaan, Norfolk, and Cornwall provide stable, low-volatility options during economic uncertainty.  
+- Key risk factors include rising unemployment and borrowing costs, which reduce transaction volume and distort pricing efficiency.  
+- High-volatility, low-volume markets (e.g., Willington) present speculative opportunities but carry significant risk due to unstable price signals.  
 
-2. **Risk & Anomaly Detection (Forensic View)**  
-   - Flag abnormal transactions (e.g., family sales, foreclosures, or data errors).  
-   - Example Question: Which sales are statistically suspicious and require review?
+Bottom line: Focus on liquid, stable cities, diversify with defensive markets, and closely monitor macroeconomic conditions.  
 
-3. **Economic & Geographic Insights (Analyst View)**  
-   - Investigate effects of affordable housing, unemployment, and household debt on real estate activity.  
-   - Example Questions:  
-     - Does affordable housing affect sales ratios or transaction volume?  
-     - How does unemployment impact price ratios?  
-     - Which cities show consistently high or low sales ratios?
+---
 
-## Data Sources
-- Real Estate Transactions (Connecticut)  
-- Unemployment Data (Connecticut)  
-- Household Debt Data (Connecticut)  
-- Affordable Housing Data (Connecticut)
+## Business Problem
+The Connecticut real estate market is shaped by regional differences, cyclical trends, and macroeconomic pressures, making it difficult for investors to clearly identify where to invest and how to manage risk.  
 
-## Architecture & Tools
-- **Data Pipeline:** Apache Airflow (orchestrated by team)  
-- **Analytics Engine:** Apache Druid (flattened schema for OLAP queries) --main contribution 
-- **BI & Visualization:** Upcoming dashboard layer
+This analysis addresses three key challenges:
+1. **Investment Targeting:** Identify cities and neighborhoods with the best risk-adjusted returns, balancing growth, liquidity, and price stability.  
+2. **Market Dynamics:** Distinguish between stable (“hot”) markets and undervalued (“cold”) opportunities, while accounting for volatility and anomalies in the data.  
+3. **External Impact:** Evaluate how macroeconomic and policy factors (unemployment, affordable housing, household debt) influence prices, transaction activity, and overall market performance.
 
-## My Role
-- Designed the initial relational model for PostgreSQL
-- Designed and implemented the Druid ingestion pipeline  
-- Flattened multi-fact warehouse schema into a single analytics-ready table  
-- Defined metrics and dimensions to answer key business questions  
-- Prepared the dataset for downstream BI analysis
+**Objective:** Provide a clear, data-driven framework to guide investment decisions while accounting for both opportunity and risk.  
 
-## Example Use Cases / Queries
-- Average property price by town over time  
-- Correlation between unemployment and sales ratios  
-- Impact of household debt on number of transactions  
-- Affordable housing vs. sales activity trends
+---
 
-## Notes
-- The original data was modeled in PostgreSQL with a normalized star schema.  
-- For Druid, the schema was denormalized to optimize query performance and aggregation speed.  
+## Methodology
+- Integrated real estate transaction data (2001–2023) with macroeconomic indicators (unemployment, household debt, affordable housing).  
+- Cleaned and standardized data (handling missing values, normalizing metrics, removing outliers).  
+- Built analytical datasets and performed time-series, correlation, and comparative analysis across cities.  
+- Developed key metrics (sales ratio, growth rates, composite investment score) to evaluate market performance.  
+
+**Skills & Tools:**  
+- **Data Engineering & Processing:** Apache Airflow  
+- **Database & Analytics:** Apache Druid, SQL  
+- **Data Visualization:** Apache Superset  
+- **Infrastructure:** Docker (Docker Compose)  
+- **Data Sources:** Connecticut Open Data, Federal Reserve Bank of St. Louis (FRED), Federal Reserve System  
+
+---
+
+## Results and Business Recommendation
+
+### 1. General Market Trend
+![Growth trend](images/transactionVolume.jpg "Growth Trend")
+Connecticut real estate shows clear cyclical behavior (2001–2023):  
+- Expansion (2001–2004) → Contraction (2006–2011) → Recovery (2012–2020) → Slowdown (2021–2023) driven by macro pressures.  
+
+**Interpretation:**  
+The market is in a late-cycle moderation phase, creating selective entry opportunities rather than broad-based growth.
+
+### 2. City-Level Growth Dynamics
+![GrowthDynamic](images/citiesByGrowth.jpg "Cities by growth")
+- **Consistent Growth Leaders:** Stamford, Rocky Hill → sustained appreciation and resilience.  
+- **Recovery-Driven Markets:** New London → strong rebound post-2012.  
+- **Volatile Small Markets:** Union, Bozrah → large fluctuations with inconsistent performance.  
+
+**Interpretation:** Returns are city-driven, not statewide.  
+
+### 3. Outliers & Risk Signals
+![GrowthDynamicWithWillington](images/growthWithWilllington.jpg "Cities by growth with Willigton")
+- Example: Willington +208× price growth spike in 2020, followed by sharp corrections.  
+- Driven by low transaction volume or isolated deals.  
+
+**Interpretation:** High returns possible but risk is disproportionately high; speculative markets are not reliable.  
+
+### 4. Hot vs Cold Markets (Market Efficiency Lens)
+![Hot area cities](images/overpricedCities.jpg "Cities in the 'hot area")
+- **Hot Markets (High Sales Ratio):** Canaan, Norfolk, Cornwall  
+  - Strong alignment between assessed and sale prices  
+  - Low volatility, high pricing transparency → Stable, defensive investments  
+
+![Cold area cities](images/undervaluedCities.jpg "Cities in the 'cold area")
+- **Cold Markets (Low Sales Ratio):** Undervalued or inefficient markets → Higher ROI potential but higher risk  
+
+**Strategic Insight:**  
+- Hot markets = income + stability  
+- Cold markets = growth + arbitrage  
+
+### 5. Investment Score (Where Capital Should Go)
+![Cities ranked by investment score](images/citiesRanked.jpg "Top cities ranked by investment score")
+- **Top-Tier Opportunities:**  
+  - Waterbury (0.79) → growth-driven upside  
+  - Bridgeport (0.57) → strong liquidity + steady demand  
+  - Stamford (0.45) → balanced, low-risk growth  
+- **Second-Tier Markets:** Bristol, Stratford, New Haven, Greenwich, Torrington, New Britain, Hartford → moderate performance  
+
+**Interpretation:** Top-performing cities combine growth, transaction volume, and pricing efficiency.  
+
+### 6. Macroeconomic Factor Correlation
+- **Unemployment Impact:** Higher unemployment → lower transactions, higher pricing inefficiency; Lower unemployment → stabilization, increased liquidity  
+- **Market Sensitivity:** Contractions in 2009–2011; pandemic shock 2020–2021; recovery tied to labor market improvement  
+
+**Interpretation:** Performance is highly sensitive to labor market conditions.  
+
+### 7. Final Business Recommendations
+**A. Portfolio Strategy (What to Buy)**  
+- **Core (Low Risk – 60–70%):** Stamford, Bridgeport, Canaan → stability, liquidity  
+- **Growth Allocation (20–30%):** Waterbury, New London → capture appreciation  
+- **Speculative Allocation (≤10%):** Union, Bozrah, Willington → high upside, opportunistic  
+
+**B. Timing Strategy (When to Invest)**  
+- Market cooling but not distressed  
+- Accumulate gradually; focus on undervalued markets with improving fundamentals  
+
+**C. Risk Management**  
+- Avoid low-liquidity towns  
+- Prioritize transaction volume  
+- Screen out extreme outliers unless speculative  
+
+**D. Macro Monitoring (What to Watch)**  
+- Unemployment rate  
+- Interest rates  
+- Housing policy  
+
+**Key Takeaways:**  
+- **Core investment (stable, low-risk):** Stamford, Bridgeport, Canaan, Norfolk, Cornwall  
+- **Growth allocation (moderate risk):** Waterbury, New London, Rocky Hill  
+- **Avoid or approach cautiously (high-risk):** Willington, Union, Bozrah  
+
+### Next Steps / Future Enhancements
+- **Real-Time / Periodic Data Updates:** Automated pipelines for up-to-date dashboards  
+- **Predictive Modeling:** Forecast price trends, sales volume, and risk-adjusted ROI  
