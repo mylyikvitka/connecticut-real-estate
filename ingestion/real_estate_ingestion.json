@@ -1,0 +1,69 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "local",
+        "baseDir": "/Users/druid/data/Real_Estate_Sales.csv",
+        "filter": "*.csv"
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "Real_Estate_Sales",
+      "timestampSpec": {
+        "column": "List Date",
+        "format": "auto"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "Serial Number"
+          },
+          {
+            "type": "double",
+            "name": "Assessed Value"
+          },
+          {
+            "type": "double",
+            "name": "Sale Amount"
+          },
+          {
+            "type": "double",
+            "name": "Sales Ratio"
+          },
+          "Property Type",
+          "Residential Type",
+          "Date Recorded",
+          "Location",
+          "Address",
+          "Town",
+          {
+            "type": "double",
+            "name": "Longitude"
+          },
+          {
+            "type": "double",
+            "name": "Latitude"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "day"
+      }
+    }
+  }
+}

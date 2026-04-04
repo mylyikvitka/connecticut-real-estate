@@ -1,0 +1,43 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "local",
+        "baseDir": "/Users/druid/data/Unemployement.csv",
+        "filter": "*.csv"
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "Unemployement",
+      "timestampSpec": {
+        "column": "Date Recorded",
+        "format": "auto"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "long",
+            "name": "UNEMPLOYCT"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "day"
+      }
+    }
+  }
+}

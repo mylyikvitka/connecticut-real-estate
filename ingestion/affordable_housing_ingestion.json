@@ -1,0 +1,49 @@
+   {
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "local",
+        "baseDir": "/Users/druid/data/Affordable_Housing.csv",
+        "filter": "*.csv"
+      },
+      "inputFormat": {
+        "type": "csv",
+        "findColumnsFromHeader": true,
+        "skipHeaderRows": 0
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "Affordable_Housing",
+      "timestampSpec": {
+        "column": "Date Recorded",
+        "format": "auto"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          "Town",
+          {
+            "type": "long",
+            "name": "Census Units"
+          },
+          {
+            "type": "double",
+            "name": "Percent Affordable"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "day"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "type": "index_parallel",
+  "spec": {
+    "ioConfig": {
+      "type": "index_parallel",
+      "inputSource": {
+        "type": "local",
+        "baseDir": "/Users/druid/data/household_debt.csv",
+        "filter": "*.csv"
+      },
+      "inputFormat": {
+        "type": "csv",
+        "skipHeaderRows": 0,
+        "findColumnsFromHeader": true
+      }
+    },
+    "tuningConfig": {
+      "type": "index_parallel",
+      "partitionsSpec": {
+        "type": "dynamic"
+      }
+    },
+    "dataSchema": {
+      "dataSource": "household_debt",
+      "timestampSpec": {
+        "column": "Date Recorded",
+        "format": "auto"
+      },
+      "dimensionsSpec": {
+        "dimensions": [
+          {
+            "type": "double",
+            "name": "low"
+          },
+          {
+            "type": "double",
+            "name": "high"
+          }
+        ]
+      },
+      "granularitySpec": {
+        "queryGranularity": "none",
+        "rollup": false,
+        "segmentGranularity": "day"
+      }
+    }
+  }
+}
