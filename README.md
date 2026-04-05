@@ -88,6 +88,7 @@ The market is in a late-cycle moderation phase, creating selective entry opportu
 **Interpretation:** Top-performing cities combine growth, transaction volume, and pricing efficiency.  
 
 ### 6. Macroeconomic Factor Correlation
+![Correlation between sales and unemployment across time dimension](images/correlationTimeUnempoyementSales.jpg "Correlation yeach year between sales and unemployement")
 - **Unemployment Impact:** Higher unemployment → lower transactions, higher pricing inefficiency; Lower unemployment → stabilization, increased liquidity  
 - **Market Sensitivity:** Contractions in 2009–2011; pandemic shock 2020–2021; recovery tied to labor market improvement  
 
